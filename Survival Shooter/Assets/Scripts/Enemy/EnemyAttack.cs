@@ -6,65 +6,60 @@ public class EnemyAttack : MonoBehaviour
     public float timeBetweenAttacks = 0.5f;
     public int attackDamage = 10;
 
-
-    Animator anim;
-    GameObject player;
-    PlayerHealth playerHealth;
+    private Animator animator;
+    private GameObject player;
+    private PlayerHealth playerHealth;
     //EnemyHealth enemyHealth;
-    bool playerInRange;
-    float timer;
+    private bool playerInRange;
+    private float timer;
 
 
-    void Awake ()
+    private void Awake()
     {
-        player = GameObject.FindGameObjectWithTag ("Player");
-        playerHealth = player.GetComponent <PlayerHealth> ();
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerHealth = player.GetComponent<PlayerHealth>();
         //enemyHealth = GetComponent<EnemyHealth>();
-        anim = GetComponent <Animator> ();
+        animator = GetComponent<Animator>();
     }
 
-
-    void OnTriggerEnter (Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject == player)
+        if (other.gameObject == player)
         {
             playerInRange = true;
         }
     }
 
-
-    void OnTriggerExit (Collider other)
+    private void OnTriggerExit(Collider other)
     {
-        if(other.gameObject == player)
+        if (other.gameObject == player)
         {
             playerInRange = false;
         }
     }
 
-
-    void Update ()
+    private void Update()
     {
         timer += Time.deltaTime;
 
-        if(timer >= timeBetweenAttacks && playerInRange/* && enemyHealth.currentHealth > 0*/)
+        if (timer >= timeBetweenAttacks && playerInRange/* && enemyHealth.currentHealth > 0*/)
         {
-            Attack ();
+            Attack();
         }
 
-        if(playerHealth.currentHealth <= 0)
+        if (playerHealth.currentHealth <= 0)
         {
-            anim.SetTrigger ("PlayerDead");
+            animator.SetTrigger("PlayerDead");
         }
     }
 
-
-    void Attack ()
+    private void Attack()
     {
         timer = 0f;
 
-        if(playerHealth.currentHealth > 0)
+        if (playerHealth.currentHealth > 0)
         {
-            playerHealth.TakeDamage (attackDamage);
+            playerHealth.TakeDamage(attackDamage);
         }
     }
 }
