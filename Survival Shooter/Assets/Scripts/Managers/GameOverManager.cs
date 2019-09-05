@@ -4,17 +4,14 @@ public class GameOverManager : MonoBehaviour
 {
     public PlayerHealth playerHealth;
 
+    private Animator anim;
 
-    Animator anim;
-
-
-    void Awake()
+    private void Awake()
     {
         anim = GetComponent<Animator>();
     }
 
-
-    void Update()
+    private void Update()
     {
         if (playerHealth.currentHealth <= 0)
         {
