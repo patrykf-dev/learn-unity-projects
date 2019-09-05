@@ -10,7 +10,7 @@ public class PlayerHealth : MonoBehaviour
     public Slider healthSlider;
     public Image damageImage;
     public AudioClip deathClip;
-    public float flashSpeed = 2f;
+    public float flashSpeed = 30f;
     public Color flashColour = new Color(1f, 0f, 0f, 0.5f);
 
 
